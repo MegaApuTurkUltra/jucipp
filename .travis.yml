@@ -24,3 +24,10 @@ script:
   - script=clean ./ci/execute.sh
   - script=compile CXX=g++ CC=gcc ./ci/execute.sh
   - script=compile make_command="broadwayd & CTEST_OUTPUT_ON_FAILURE=1 make test" ./ci/execute.sh
+deploy:
+  provider: releases
+  api_key: '$GITHUB_API_KEY'
+  file: 'jucipp/build/juci'
+  skip_cleanup: true
+  on:
+    tags
